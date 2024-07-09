@@ -68,7 +68,7 @@ class Post(models.Model):
     image = models.FileField(upload_to='user_directory_path', null=True, blank=True)
     visibility = models.CharField(max_length=10, default="everyone",
                                   choices=[("everyone", "Everyone"), ("friends", "Friends"), ("private", "Private")])
-    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    pid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="likes")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
@@ -120,7 +120,7 @@ class Story(models.Model):
     title = models.CharField(max_length=500, blank=True ,null=True)
     image = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     visibility = models.CharField(max_length=10, default="everyone", choices=VISIBILITY)
-    sid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    sid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="story_likes")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
@@ -193,7 +193,7 @@ class Gallery(models.Model):
 
 
 class FriendRequest(models.Model):
-    fid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    fid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     sender = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="request_sender")
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="request_receiver")
     status = models.CharField(max_length=10, default="pending", choices=FRIEND_REQUEST)
@@ -207,7 +207,7 @@ class FriendRequest(models.Model):
         verbose_name_plural = "Friend Request"
 
 class Friend(models.Model):
-    fid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    fid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name="friend")
     date = models.DateTimeField(auto_now_add=True)
@@ -225,7 +225,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment = models.CharField(max_length=500, blank=True ,null=True)
     date = models.DateTimeField(auto_now_add=True)
-    cid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    cid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="comment_likes")
     active = models.BooleanField(default=True)
 
@@ -246,7 +246,7 @@ class ReplyComment(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     reply = models.CharField(max_length=500, blank=True ,null=True)
     date = models.DateTimeField(auto_now_add=True)
-    cid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    cid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -282,7 +282,7 @@ class Group(models.Model):
     name = models.CharField(max_length=500, blank=True ,null=True)
     description = models.TextField(blank=True ,null=True)
     visibility = models.CharField(max_length=10, default="everyone", choices=VISIBILITY)
-    gid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    gid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
     views = models.PositiveIntegerField(default=0)
@@ -320,7 +320,7 @@ class GroupPost(models.Model):
     title = models.CharField(max_length=500, blank=True ,null=True)
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
     visibility = models.CharField(max_length=10, default="everyone", choices=VISIBILITY)
-    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    pid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="group_post_likes")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -360,7 +360,7 @@ class Page(models.Model):
     slug = models.SlugField(unique=True)
     views = models.PositiveIntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
-    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    pid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
 
     def __str__(self):
         if self.name:
@@ -402,7 +402,7 @@ class PagePost(models.Model):
     title = models.CharField(max_length=500, blank=True ,null=True)
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
     visibility = models.CharField(max_length=10, default="everyone", choices=VISIBILITY)
-    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    pid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="page_post_likes")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -509,7 +509,7 @@ class DevelopersCommunity(models.Model):
     image = models.ImageField(upload_to=user_directory_path, null=True, blank=True)
     video = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     visibility = models.CharField(max_length=10, default="everyone", choices=VISIBILITY)
-    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
+    pid = ShortUUIDField(  max_length=25, alphabet="abcdefghijklmnopqrstuvxyz123")
     likes = models.ManyToManyField(User, blank=True, related_name="developers_likes")
     active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
