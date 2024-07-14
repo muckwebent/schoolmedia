@@ -265,7 +265,7 @@ class Notification(models.Model):
     notification_type = models.CharField(max_length=100, choices=NOTIFICATION_TYPE, default="none")
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
-    nid = ShortUUIDField(length=10, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz")
+    nid = ShortUUIDField(max_length=25)
 
     class Meta:
         ordering = ["-date"]
@@ -436,7 +436,7 @@ class ChatMessage(models.Model):
     message = models.CharField(max_length=10000000000)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
-    mid = ShortUUIDField(length=10, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz")
+    mid = ShortUUIDField(max_length=25)
 
     def __str__(self):
         #return self.sender
@@ -488,7 +488,7 @@ class GroupChatMessage(models.Model):
     message = models.CharField(max_length=100000)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
-    mid = ShortUUIDField(length=10, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz")
+    mid = ShortUUIDField(max_length=25)
 
 
     def __str__(self):
