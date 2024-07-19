@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vvc&xghblt&%zr_+kmutf+b(5qs%ze5k=kw=bi)naqyw)o4w#7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 ASGI_APPLICATION = 'facebook_prj.asgi.application'
 
